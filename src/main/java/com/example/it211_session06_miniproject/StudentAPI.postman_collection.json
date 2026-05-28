@@ -1,0 +1,265 @@
+{
+  "info": {
+    "name": "Student API - SS07",
+    "_postman_id": "student-api-ss07-collection",
+    "description": "Kiểm tra thực hành Java Web Service SS07 - Full CRUD Student API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. GET all – thành công (200)",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Accept", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/students",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "students"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2. GET by id – thành công (200)",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Accept", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/students/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "students", "1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3. GET by id – không tồn tại (404)",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Accept", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/students/999",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "students", "999"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "4. POST – thêm mới thành công (201)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Accept",       "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fullName\": \"Nguyen Van Test\",\n  \"email\": \"nguyenvantest@gmail.com\",\n  \"gpa\": 3.5\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/students",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "students"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "4b. POST – dữ liệu không hợp lệ (400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Accept",       "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fullName\": \"\",\n  \"email\": \"not-an-email\",\n  \"gpa\": 5.0\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/students",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "students"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "5. PUT – cập nhật toàn bộ thành công (200)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Accept",       "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fullName\": \"Nguyen Van A Updated\",\n  \"email\": \"updated@gmail.com\",\n  \"gpa\": 3.9\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/students/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "students", "1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "6. PUT – ID không tồn tại (404)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Accept",       "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fullName\": \"Ghost Student\",\n  \"email\": \"ghost@gmail.com\",\n  \"gpa\": 2.0\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/students/999",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "students", "999"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "7. PATCH – chỉ cập nhật gpa (200)",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Accept",       "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"gpa\": 3.8\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/students/2",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "students", "2"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "8. PATCH – chỉ cập nhật email (200)",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Accept",       "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"newemail@gmail.com\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/students/3",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "students", "3"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "9. PATCH – ID không tồn tại (404)",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Accept",       "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"gpa\": 3.0\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/students/999",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "students", "999"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "10. DELETE – xóa thành công (204)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/students/5",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "students", "5"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "11. DELETE – ID không tồn tại (404)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/students/999",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "students", "999"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "BONUS. GET all – nhận XML",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Accept", "value": "application/xml" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/students",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "students"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "BONUS. GET by id – nhận XML",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Accept", "value": "application/xml" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/students/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "students", "1"]
+        }
+      },
+      "response": []
+    }
+  ]
+}
